@@ -196,6 +196,7 @@ Keep animations purposeful: entrance reveals, hover feedback, and user-initiated
 **Open in browser:**
 - macOS: `open ~/.agent/diagrams/filename.html`
 - Linux: `xdg-open ~/.agent/diagrams/filename.html`
+- Windows: `start ~/.agent/diagrams/filename.html`
 
 **Tell the user** the file path so they can re-open or share it.
 

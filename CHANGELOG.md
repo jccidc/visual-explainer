@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.7.0] - 2026-04-10
+
+### Theme Switcher
+- Runtime palette and font switching via dropdown — 8 curated presets: Teal Slate, Terracotta Sage, Editorial Rose, Deep Navy Gold, Amber Emerald, Dracula, Nord, Catppuccin Mocha
+- Each preset defines full light and dark palettes with all CSS custom properties (bg, surface, border, text, accent, node colors, status colors)
+- Google Fonts hot-reload via `<link>` element swap — fonts change instantly without page refresh
+- Mermaid diagrams re-render automatically on theme change with updated `themeVariables`
+- Light/dark mode toggle button alongside preset dropdown
+- Random initial preset on page load for variety
+- New `theme-switcher-demo.html` template showcasing all components with live switching
+- Keyboard accessible: Escape closes dropdown, Tab navigation through options
+
+### Share Button
+- In-page share dropdown with three options: Copy HTML, Download .html, Save as PDF
+- Copy/download strips all interactive chrome (theme switcher, share button, background selector) and bakes current theme into the HTML — recipients see exactly what you see
+- Save as PDF opens browser print dialog with print-optimized CSS (light theme forced, chrome hidden, page breaks between sections)
+- Toast notification confirms each action
+
+### Background Switcher
+- Runtime background pattern selector with 9 options: Dot Grid, Fine Dots, Diagonal Lines, Cross Hatch, Radial Glow, Dual Glow, Blueprint Grid, Noise Texture, None
+- Patterns use CSS custom properties so they adapt automatically when the theme changes
+- Background choice persists through theme switches
+
+### Windows Support
+- Added Windows `start` command to browser-open instructions in SKILL.md
+
+### Print Styles
+- New `@media print` rules in `css-patterns.md`: force light colors, hide interactive chrome, page breaks between sections, expand collapsibles, show link URLs
+
+### Accessibility
+- Color contrast guidance (WCAG 2.1 AA ratios)
+- Focus-visible keyboard indicators
+- ARIA landmarks guidance (nav, main, article)
+- Screen reader considerations for Mermaid diagrams, status indicators, images, tables
+
+### Bug Fixes
+- Synced `marketplace.json` version from 0.5.1 to 0.6.3 (was stale)
+- Added Claude Code skill paths to `share.sh` (previously only checked Pi paths)
+
 ## [0.6.3] - 2026-03-09
 
 ### Documentation
