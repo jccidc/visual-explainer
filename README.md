@@ -18,6 +18,40 @@ Ask your agent to explain a system architecture, review a diff, or compare requi
 
 https://github.com/user-attachments/assets/55ebc81b-8732-40f6-a4b1-7c3781aa96ec
 
+## What's New in v0.7.0
+
+### Theme Engine
+
+Every generated page now includes a runtime theme engine. Switch palettes, toggle light/dark, swap background patterns, and export clean HTML — all without a page refresh.
+
+![Overview](docs/screenshots/overview.png)
+
+### 11 Theme Presets
+
+Full light and dark palettes with Google Fonts hot-reload. Mermaid diagrams re-render automatically on every theme change.
+
+![Theme presets](docs/screenshots/theme-presets.png)
+
+### 16 Background Patterns
+
+Dot grid, hex grid, blueprint, isometric, parchment, sketchbook, and more. All mode-aware — stronger opacity in light mode, subtler in dark.
+
+![Background patterns](docs/screenshots/background-patterns.png)
+
+### Share Button
+
+Copy clean HTML to clipboard or download as `.html`. The export strips all interactive chrome (theme switcher, share button, background selector) and bakes the active theme into the CSS — recipients see exactly what you see.
+
+### Test Coverage
+
+Full manual test matrix covering all presets, patterns, modes, share functions, responsive behavior, and keyboard accessibility.
+
+![Test matrix](docs/screenshots/test-matrix.png)
+
+### Files Changed
+
+![Files changed](docs/screenshots/files-changed.png)
+
 ## Why
 
 Every coding agent defaults to ASCII art when you ask for a diagram. Box-drawing characters, monospace alignment hacks, text arrows. It works for trivial cases, but anything beyond a 3-box flowchart turns into an unreadable mess.
@@ -65,16 +99,16 @@ Invoke with `$visual-explainer` or let Codex activate it implicitly. With prompt
 
 ## Commands
 
-| Command | What it does |
-|---------|-------------|
-| `/generate-web-diagram` | Generate an HTML diagram for any topic |
-| `/generate-visual-plan` | Generate a visual implementation plan for a feature or extension |
-| `/generate-slides` | Generate a magazine-quality slide deck |
-| `/diff-review` | Visual diff review with architecture comparison and code review |
-| `/plan-review` | Compare a plan against the codebase with risk assessment |
-| `/project-recap` | Mental model snapshot for context-switching back to a project |
-| `/fact-check` | Verify accuracy of a document against actual code |
-| `/share` | Deploy an HTML page to Vercel and get a live URL |
+| Command                 | What it does                                                          |
+|-------------------------|-----------------------------------------------------------------------|
+| `/generate-web-diagram` | Generate an HTML diagram for any topic                                |
+| `/generate-visual-plan` | Generate a visual implementation plan for a feature or extension      |
+| `/generate-slides`      | Generate a magazine-quality slide deck                                |
+| `/diff-review`          | Visual diff review with architecture comparison and code review       |
+| `/plan-review`          | Compare a plan against the codebase with risk assessment              |
+| `/project-recap`        | Mental model snapshot for context-switching back to a project         |
+| `/fact-check`           | Verify accuracy of a document against actual code                     |
+| `/share`                | Deploy an HTML page to Vercel and get a live URL                      |
 
 The agent also kicks in automatically when it's about to dump a complex table in the terminal (4+ rows or 3+ columns) — it renders HTML instead.
 
@@ -110,7 +144,8 @@ plugins/
     │   ├── architecture.html
     │   ├── mermaid-flowchart.html
     │   ├── data-table.html
-    │   └── slide-deck.html
+    │   ├── slide-deck.html
+    │   └── theme-switcher-demo.html
     └── scripts/
         └── share.sh       ← deploy HTML to Vercel for sharing
 ```
@@ -122,7 +157,6 @@ The skill routes to the right approach automatically: Mermaid for flowcharts and
 ## Limitations
 
 - Requires a browser to view
-- Switching OS theme requires a page refresh for Mermaid SVGs
 - Results vary by model capability
 
 ## Credits
