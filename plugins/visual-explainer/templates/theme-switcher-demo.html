@@ -759,182 +759,24 @@
       margin-bottom: 32px;
     }
 
-    /* === Page Break Markers === */
-    .page-break-marker {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 8px 0;
-      padding: 4px 0;
-      cursor: default;
-    }
-
-    .page-break-marker::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      border-top: 2px dashed var(--accent);
-      opacity: 0.5;
-    }
-
-    .page-break-marker__label {
-      position: relative;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--accent);
-      background: var(--bg);
-      padding: 2px 12px;
-      border: 1px solid var(--accent);
-      border-radius: 4px;
-      opacity: 0.7;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .page-break-marker__label svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    .page-break-marker__remove {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 22px;
-      height: 22px;
-      border: 1px solid var(--border-bright);
-      background: var(--surface);
-      color: var(--text-dim);
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.15s, color 0.15s, border-color 0.15s;
-    }
-
-    .page-break-marker:hover .page-break-marker__remove {
-      opacity: 1;
-    }
-
-    .page-break-marker__remove:hover {
-      color: var(--red);
-      border-color: var(--red);
-    }
-
-    /* Insertion points — shown when page break mode is active */
-    .page-break-insert {
-      display: none;
-      height: 24px;
-      margin: 4px 0;
-      position: relative;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.15s;
-    }
-
-    body.pb-mode .page-break-insert {
-      display: block;
-    }
-
-    .page-break-insert::before {
-      content: '';
-      position: absolute;
-      left: 20%;
-      right: 20%;
-      top: 50%;
-      border-top: 1px dashed var(--text-dim);
-      opacity: 0;
-      transition: opacity 0.15s;
-    }
-
-    .page-break-insert::after {
-      content: '+ page break';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-dim);
-      opacity: 0;
-      transition: opacity 0.15s;
-      white-space: nowrap;
-      background: var(--bg);
-      padding: 0 8px;
-    }
-
-    .page-break-insert:hover {
-      background: var(--accent-dim);
-    }
-
-    .page-break-insert:hover::before,
-    .page-break-insert:hover::after {
-      opacity: 1;
-    }
-
-    /* Toolbar button active state */
-    .pb-toggle.active {
-      background: var(--accent-dim) !important;
-      color: var(--accent) !important;
-      border-color: var(--accent) !important;
-    }
-
     /* === Print === */
-    /* Print: keep active theme, strip chrome, kill browser headers/footers */
-    @page {
-      margin: 0;
-      size: auto;
-    }
+    @page { margin: 0; size: auto; }
 
     @media print {
-      /* Force ALL background colors to print — must be on every element */
       *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
       }
-
-      body {
-        padding: 40px !important;
-      }
+      body { padding: 40px !important; }
       .theme-switcher, .zoom-controls, .diagram-shell__hint, .share-toast { display: none !important; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-
-      /* Manual page break markers */
-      .page-break-marker {
-        break-before: page;
-        border: none !important;
-        height: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        visibility: hidden;
-      }
-      .page-break-marker .page-break-marker__label,
-      .page-break-marker .page-break-marker__remove {
-        display: none !important;
-      }
-
-      /* Keep components together — don't split across pages */
       .ve-card, .ve-card--elevated, .ve-card--hero,
       .kpi-card, .kpi-row, .table-wrap,
       .code-block, .mermaid-wrap, .diagram-shell,
       .diff-panels, details.collapsible, .card-grid, .callout {
         break-inside: avoid;
       }
-
-      /* Hide page break mode UI */
-      .page-break-insert { display: none !important; }
     }
   </style>
 </head>
@@ -951,15 +793,6 @@
     </button>
     <ul class="theme-switcher__menu" role="listbox"></ul>
   </div>
-  <button class="pb-toggle" onclick="PageBreaks.toggle()" title="Toggle page break mode" aria-label="Toggle page break mode" style="width:36px;height:36px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s,border-color 0.15s;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M6 9l6 6 6-6"/>
-      <line x1="4" y1="15" x2="8" y2="15" stroke-dasharray="2 2"/>
-      <line x1="10" y1="15" x2="14" y2="15" stroke-dasharray="2 2"/>
-      <line x1="16" y1="15" x2="20" y2="15" stroke-dasharray="2 2"/>
-      <path d="M6 21l6-6 6 6"/>
-    </svg>
-  </button>
   <div class="bg-dropdown">
     <button class="bg-dropdown__trigger" aria-haspopup="menu" aria-expanded="false" title="Change background pattern">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -984,10 +817,6 @@
       <li role="menuitem" onclick="SharePage.download()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download .html
-      </li>
-      <li role="menuitem" onclick="SharePage.savePDF()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Save as PDF
       </li>
     </ul>
   </div>
@@ -1869,127 +1698,14 @@ graph TD
       closeMenus();
     }
 
-    function savePDF() {
-      closeMenus();
-      toast('Destination: Save as PDF | More settings: check "Background graphics"');
-
-      // Bake all computed colors as inline styles — CSS variables don't survive print
-      const allEls = document.querySelectorAll('body, .ve-card, .ve-card--hero, .ve-card--elevated, .kpi-card, .table-wrap, .code-block, .mermaid-wrap, .diff-panel__body, .diff-panel__header, .diff-panel__header--before, .diff-panel__header--after, details.collapsible summary, details.collapsible .collapsible__body, .data-table th, .data-table td, .data-table tbody tr, .status, .tag, .callout, .zoom-controls, h1, h2, p, li, span, code, .subtitle, .kpi-card__value, .kpi-card__label, .kpi-card__trend, .ve-card__label');
-      const originals = [];
-
-      allEls.forEach(el => {
-        const cs = getComputedStyle(el);
-        originals.push({
-          el,
-          bg: el.style.backgroundColor,
-          color: el.style.color,
-          borderColor: el.style.borderColor,
-          borderLeftColor: el.style.borderLeftColor,
-          borderBottomColor: el.style.borderBottomColor,
-          boxShadow: el.style.boxShadow,
-        });
-        el.style.backgroundColor = cs.backgroundColor;
-        el.style.color = cs.color;
-        el.style.borderColor = cs.borderColor;
-        el.style.borderLeftColor = cs.borderLeftColor;
-        el.style.borderBottomColor = cs.borderBottomColor;
-        // Skip box-shadow — it's decorative and causes print issues
-      });
-
-      setTimeout(() => {
-        window.print();
-        // Restore after print dialog closes
-        setTimeout(() => {
-          originals.forEach(o => {
-            o.el.style.backgroundColor = o.bg;
-            o.el.style.color = o.color;
-            o.el.style.borderColor = o.borderColor;
-            o.el.style.borderLeftColor = o.borderLeftColor;
-            o.el.style.borderBottomColor = o.borderBottomColor;
-            o.el.style.boxShadow = o.boxShadow;
-          });
-        }, 1000);
-      }, 400);
-    }
-
     function closeMenus() {
       document.querySelectorAll('.share-dropdown__menu, .theme-switcher__menu, .bg-dropdown__menu').forEach(m => m.classList.remove('open'));
     }
 
-    return { copyHTML, download, savePDF };
+    return { copyHTML, download };
   })();
 
   window.SharePage = SharePage;
-
-  // === PageBreaks module ===
-  const PageBreaks = (function() {
-    let active = false;
-    let insertPoints = [];
-
-    function toggle() {
-      active = !active;
-      document.body.classList.toggle('pb-mode', active);
-      document.querySelector('.pb-toggle').classList.toggle('active', active);
-
-      if (active) {
-        buildInsertPoints();
-      } else {
-        removeInsertPoints();
-      }
-    }
-
-    function buildInsertPoints() {
-      removeInsertPoints();
-      // Find all direct children of .wrap that are block elements
-      const wrap = document.querySelector('.wrap');
-      if (!wrap) return;
-      const children = Array.from(wrap.children).filter(el =>
-        !el.classList.contains('page-break-insert') &&
-        !el.classList.contains('page-break-marker') &&
-        el.tagName !== 'SCRIPT'
-      );
-
-      children.forEach((child, i) => {
-        if (i === 0) return; // Don't put one before the title
-        const point = document.createElement('div');
-        point.className = 'page-break-insert';
-        point.onclick = function() {
-          insertBreak(point);
-        };
-        child.parentNode.insertBefore(point, child);
-        insertPoints.push(point);
-      });
-    }
-
-    function removeInsertPoints() {
-      insertPoints.forEach(p => p.remove());
-      insertPoints = [];
-    }
-
-    function insertBreak(insertPoint) {
-      const marker = document.createElement('div');
-      marker.className = 'page-break-marker';
-      marker.innerHTML = `
-        <span class="page-break-marker__label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/><path d="M6 21l6-6 6 6"/></svg>
-          Page Break
-        </span>
-        <button class="page-break-marker__remove" title="Remove page break">&times;</button>
-      `;
-      marker.querySelector('.page-break-marker__remove').onclick = function(e) {
-        e.stopPropagation();
-        marker.remove();
-      };
-
-      insertPoint.parentNode.insertBefore(marker, insertPoint);
-      insertPoint.remove();
-      insertPoints = insertPoints.filter(p => p !== insertPoint);
-    }
-
-    return { toggle };
-  })();
-
-  window.PageBreaks = PageBreaks;
 
   // === BackgroundSwitcher module ===
   // Populate background menu

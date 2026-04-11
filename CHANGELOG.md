@@ -13,21 +13,20 @@
 - Keyboard accessible: Escape closes dropdown, Tab navigation through options
 
 ### Share Button
-- In-page share dropdown with three options: Copy HTML, Download .html, Save as PDF
+- In-page share dropdown: Copy HTML, Download .html
 - Copy/download strips all interactive chrome (theme switcher, share button, background selector) and bakes current theme into the HTML — recipients see exactly what you see
-- Save as PDF opens browser print dialog with print-optimized CSS (light theme forced, chrome hidden, page breaks between sections)
 - Toast notification confirms each action
 
 ### Background Switcher
-- Runtime background pattern selector with 9 options: Dot Grid, Fine Dots, Diagonal Lines, Cross Hatch, Radial Glow, Dual Glow, Blueprint Grid, Noise Texture, None
-- Patterns use CSS custom properties so they adapt automatically when the theme changes
-- Background choice persists through theme switches
+- Runtime background pattern selector with 15 options: Dot Grid, Hex Grid, Diagonal Lines, Cross Hatch, Radial Glow, Dual Glow, Blueprint Grid, Noise Texture, Honeycomb, Isometric, Topography, Parchment, Sketchbook, Graph Paper, Linen
+- Patterns use CSS custom properties and mode-aware opacity (stronger in light mode)
+- Background re-applies automatically on theme switch
 
 ### Windows Support
 - Added Windows `start` command to browser-open instructions in SKILL.md
 
 ### Print Styles
-- New `@media print` rules in `css-patterns.md`: force light colors, hide interactive chrome, page breaks between sections, expand collapsibles, show link URLs
+- New `@media print` rules in `css-patterns.md`: preserve active theme, hide interactive chrome, prevent component splits with `break-inside: avoid`
 
 ### Accessibility
 - Color contrast guidance (WCAG 2.1 AA ratios)

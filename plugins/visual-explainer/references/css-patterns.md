@@ -2202,7 +2202,6 @@ The `SharePage.getCleanHTML()` function clones the document, removes the `.theme
   <ul class="share-dropdown__menu" role="menu">
     <li role="menuitem" onclick="SharePage.copyHTML()">Copy HTML</li>
     <li role="menuitem" onclick="SharePage.download()">Download .html</li>
-    <li role="menuitem" onclick="SharePage.savePDF()">Save as PDF</li>
   </ul>
 </div>
 ```
