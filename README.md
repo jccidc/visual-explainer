@@ -1,8 +1,8 @@
 <p>
-  <img src="banner.png" alt="visual-explainer" width="1100">
+  <img src="banner.png" alt="my-visual-explainer" width="1100">
 </p>
 
-# visual-explainer
+# my-visual-explainer
 
 **An agent skill that turns complex terminal output into styled HTML pages you actually want to read.**
 
@@ -64,38 +64,38 @@ This skill fixes that. Real typography, dark/light themes, interactive Mermaid d
 
 **Claude Code (marketplace):**
 ```shell
-/plugin marketplace add nicobailon/visual-explainer
-/plugin install visual-explainer@visual-explainer-marketplace
+/plugin marketplace add jccidc/my-visual-explainer
+/plugin install my-visual-explainer@my-visual-explainer-marketplace
 ```
 
-Note: Claude Code plugins namespace commands as `/visual-explainer:command-name`.
+Note: Claude Code plugins namespace commands as `/my-visual-explainer:command-name`.
 
 **Pi:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nicobailon/visual-explainer/main/install-pi.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jccidc/my-visual-explainer/main/install-pi.sh | bash
 ```
 
 Or clone and run:
 ```bash
-git clone --depth 1 https://github.com/nicobailon/visual-explainer.git
-cd visual-explainer && ./install-pi.sh
+git clone --depth 1 https://github.com/jccidc/my-visual-explainer.git
+cd my-visual-explainer && ./install-pi.sh
 ```
 
 **OpenAI Codex:**
 ```bash
-git clone --depth 1 https://github.com/nicobailon/visual-explainer.git /tmp/visual-explainer
+git clone --depth 1 https://github.com/jccidc/my-visual-explainer.git /tmp/my-visual-explainer
 
 # Install skill
-cp -r /tmp/visual-explainer/plugins/visual-explainer ~/.agents/skills/visual-explainer
+cp -r /tmp/my-visual-explainer/plugins/my-visual-explainer ~/.agents/skills/my-visual-explainer
 
 # Optional: Install slash commands (deprecated, but works)
 mkdir -p ~/.codex/prompts
-cp /tmp/visual-explainer/plugins/visual-explainer/commands/*.md ~/.codex/prompts/
+cp /tmp/my-visual-explainer/plugins/my-visual-explainer/commands/*.md ~/.codex/prompts/
 
-rm -rf /tmp/visual-explainer
+rm -rf /tmp/my-visual-explainer
 ```
 
-Invoke with `$visual-explainer` or let Codex activate it implicitly. With prompts installed, use `/prompts:diff-review`, `/prompts:plan-review`, etc.
+Invoke with `$my-visual-explainer` or let Codex activate it implicitly. With prompts installed, use `/prompts:diff-review`, `/prompts:plan-review`, etc.
 
 ## Commands
 
@@ -130,7 +130,7 @@ https://github.com/user-attachments/assets/342d3558-5fcf-4fb2-bc03-f0dd5b9e35dc
 ├── plugin.json           ← marketplace identity
 └── marketplace.json      ← plugin catalog
 plugins/
-└── visual-explainer/
+└── my-visual-explainer/
     ├── .claude-plugin/
     │   └── plugin.json   ← plugin manifest
     ├── SKILL.md           ← workflow + design principles

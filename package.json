@@ -1,5 +1,5 @@
 {
-  "name": "visual-explainer",
+  "name": "my-visual-explainer",
   "version": "0.7.0",
   "description": "Agent skill that generates beautiful HTML pages for diagrams, diff reviews, plan reviews, and data tables",
   "keywords": [
